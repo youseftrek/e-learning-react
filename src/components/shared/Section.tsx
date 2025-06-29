@@ -26,8 +26,11 @@ const Section = ({
       <p className="text-muted-foreground mb-3">{description}</p>
       <div className="w-full">{children}</div>
       {link && linkHref && (
-        <div className="mx-auto w-fit mt-2">
-          <Link to={linkHref} className="underline underline-offset-3">
+        <div className="mx-auto w-fit mt-4">
+          <Link
+            to={linkHref}
+            className="underline underline-offset-3 text-primary hover:opacity-85 transition-all duration-200"
+          >
             {link}
           </Link>
         </div>

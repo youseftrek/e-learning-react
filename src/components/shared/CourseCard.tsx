@@ -1,6 +1,12 @@
-import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
+import { Card } from "../ui/card";
+import { Eye } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 type CourseCardProps = {
+  id: number;
   image: string;
   title: string;
   description: string;
@@ -10,6 +16,7 @@ type CourseCardProps = {
 };
 
 const CourseCard = ({
+  id,
   image,
   title,
   description,
@@ -18,19 +25,29 @@ const CourseCard = ({
   level,
 }: CourseCardProps) => {
   return (
-    <div className="w-full p-5 bg-background rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-      <img src={image} alt={title} className="w-full" />
+    <Card className="w-full p-5 hover:shadow-lg group">
+      <div className="w-full max-h-[200px] overflow-hidden rounded-lg">
+        <img
+          src={image}
+          alt={title}
+          className="object-cover group-hover:scale-105 duration-200 transition-all"
+        />
+      </div>
+      <div className="flex text-xs text-muted-foreground gap-2">
+        <Badge variant="secondary">{time}</Badge>
+        <Badge variant="secondary">{level}</Badge>
+        <Badge variant="secondary">{author}</Badge>
+      </div>
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="text-sm text-muted-foreground">{description}</p>
-      <div className="flex justify-between text-xs text-muted-foreground ">
-        <span>{time}</span>
-        <span>{level}</span>
-        <span className="text-xs text-muted-foreground">{author}</span>
-      </div>
-      <Button variant="secondary" className="w-full">
-        View Details
-      </Button>
-    </div>
+
+      <Link
+        to={`/course/${id}`}
+        className={cn(buttonVariants(), "flex items-center gap-2")}
+      >
+        <Eye /> View Details
+      </Link>
+    </Card>
   );
 };
 

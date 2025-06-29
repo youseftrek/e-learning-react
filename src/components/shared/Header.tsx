@@ -16,6 +16,7 @@ const Header = () => {
   const location = useLocation();
   const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(true);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const isActive = (path: any) => location.pathname === path;
 
   useEffect(() => {
